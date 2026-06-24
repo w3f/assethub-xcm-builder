@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset Hub XCM Builder</title>
+  </head>
+  <body>
+    <main>
+      <h1>Asset Hub XCM Builder</h1>
+      <p class="subtitle">
+        Build call data for
+        <code>polkadotXcm.transferAssetsUsingTypeAndThen</code> between Polkadot
+        and Kusama Asset Hubs.
+      </p>
+
+      <section class="card">
+        <div class="direction">
+          <span id="direction-label"></span>
+          <button id="switch" type="button">Switch direction</button>
+        </div>
+
+        <label>
+          RPC endpoint
+          <select id="endpoint"></select>
+        </label>
+        <p id="status" class="status"></p>
+      </section>
+
+      <section class="card">
+        <label>
+          Amount <span id="amount-unit" class="unit"></span>
+          <input id="amount" type="text" inputmode="decimal" placeholder="1.5" />
+        </label>
+        <p id="amount-planck" class="hint"></p>
+
+        <label>
+          Recipient
+          <input id="beneficiary" type="text" placeholder="0x… or SS58 address" />
+        </label>
+        <p id="beneficiary-hex" class="hint"></p>
+
+        <label class="checkbox">
+          <input id="proxy-toggle" type="checkbox" />
+          Send as proxy
+        </label>
+        <div id="proxy-field" hidden>
+          <label>
+            Real account
+            <input id="proxy-real" type="text" placeholder="0x… or SS58 address" />
+          </label>
+          <p id="proxy-hex" class="hint"></p>
+        </div>
+
+        <button id="generate" type="button" disabled>Generate call data</button>
+        <p id="error" class="error"></p>
+      </section>
+
+      <section id="output" class="card" hidden>
+        <p class="warning">
+          ⚠️ <strong>Verify before signing.</strong> Independently decode this
+          call and confirm the destination, amount, and recipient before
+          submitting.
+        </p>
+
+        <div class="summary" id="summary"></div>
+
+        <label>
+          Call data
+          <div class="output-row">
+            <textarea id="call-data" readonly rows="3"></textarea>
+            <button class="copy" data-target="call-data" type="button">Copy</button>
+          </div>
+        </label>
+
+        <label>
+          Call hash
+          <div class="output-row">
+            <input id="call-hash" type="text" readonly />
+            <button class="copy" data-target="call-hash" type="button">Copy</button>
+          </div>
+        </label>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
